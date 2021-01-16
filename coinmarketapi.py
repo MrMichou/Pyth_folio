@@ -133,7 +133,7 @@ def calc_total(dict_crypto, portefolio):
 def main():
     spreadsheet_id = ""
     range_name = ""
-    money = ''
+    money = '' # Ex. CAD, EUR etc...
     api_key = ''
     portfolio = {
             # Example

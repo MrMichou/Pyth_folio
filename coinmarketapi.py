@@ -99,7 +99,7 @@ def append_value(dict_obj, key, value):
         # so, add key-value pair
         dict_obj[key] = value
 
-def process_data(symbol):
+def process_data(symbol, money):
     symbol_crypto = []
     dict_crypto = {}
     for a in symbol.keys():
@@ -109,7 +109,7 @@ def process_data(symbol):
         print(data["status"]["timestamp"])
     for i in data["data"]:
         if i["symbol"] in symbol:
-            append_value(dict_crypto, str(i["symbol"]), float(i["quote"]["CAD"]["price"]))
+            append_value(dict_crypto, str(i["symbol"]), float(i["quote"][money]["price"]))
     return dict_crypto
 
 def calc_total(dict_crypto, portefolio): 
@@ -142,7 +142,7 @@ def main():
             "ETH"  : [1, 17000]
             }
     get_json(money, api_key)
-    value_crypto = process_data(portfolio)
+    value_crypto = process_data(portfolio, money)
     calc_total(value_crypto, portfolio)
     # The google spreadsheet is a fucking nightmare to config
     google_data(value_crypto, spreadsheet_id, range_name)
